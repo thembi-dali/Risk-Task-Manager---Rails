@@ -1,34 +1,27 @@
-<div class="container">
-  <h1>My tasks</h1>
-  <ul>
-    <% @tasks.each do |task| %>
-      <% if task.completed? %>
-        <div>
-          <input type="checkbox" name="checkbox"></input>
-          <span><%= link_to task.title, task_path(task) %></span>
-          <%= link_to task_path(task), method: :delete, data: { confirm: "Are you sure?" } do %>
-            <!-- <input class="far fa-trash-alt"></input> -->
-          <% end %>
-        </div>
-      <% else %>
-        <div>
-          <input type="checkbox" name="checkbox"></input>
-          <span><%= link_to task.title, task_path(task) %></span>
-          <%= link_to task_path(task), method: :delete, data: { confirm: "Are you sure?" } do %>
+<h1>My To-Do List</h1>
 
-          <% end %>
-        </div>
+<ol id="tasks">
+  <% @tasks.each do |task| %>
+    <li class="stuff">
+      <% if task.completed %>
+      <% else %>
       <% end %>
-    <% end %>
-  </ul>
-  <div class="border-top">
-    <div class="back-link">
-      <input class="fas fa-plus"></input>
-      <span><%= link_to "Add a new task", new_task_path %>
-      </span>
-    </div>
-  </div>
-</div>
+      <%= link_to task.title, task_path(task.id) %>
+
+      <%= link_to task_path(task.id), method: :delete, data: { confirm: "Delete #{task.title}?" } do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <% end %>
+    </li>
+  <% end %>
+</ol>
+
+<hr>
+
+<%= link_to new_task_path do %>
+  <i class="button"></i> Add a new task
+<% end %>
+
+
 
 
 

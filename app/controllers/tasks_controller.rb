@@ -1,12 +1,11 @@
 class TasksController < ApplicationController
+  before_action :set_path, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
   end
 
-  def show
-    @task = Task.find(params[:id])
-  end
+  def show; end
 
   def new
     @task = Task.new
@@ -18,9 +17,7 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
-  def edit
-    @task = Task.find(params[:id])
-  end
+  def edit; end
 
   def update
     @task = Task.find(params[:id])
@@ -29,16 +26,17 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
     redirect_to tasks_path
   end
 
   private
 
+  def set_path
+    @task = Task.find(params[:id])
+  end
+
   def task_params
-    # *Strong params*: You need to *whitelist* what can be updated by the user
-    # Never trust user data!
-    params.require(:task).permit(:title, :details, :completed)
+    params.require(:task).permit(:title, :detail, :completed)
   end
 end

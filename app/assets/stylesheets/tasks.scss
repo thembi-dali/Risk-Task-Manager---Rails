@@ -19,9 +19,6 @@ a {
   justify-content: space-between;
 }
 
-ul {
-  padding: 10px;
-}
 div .border-top {
   margin-top: 10px;
 }
@@ -64,4 +61,16 @@ div.alert span a {
 
 .task-description {
   padding: 10px 0;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.stuff {
+  padding-bottom: 15px;
 }
